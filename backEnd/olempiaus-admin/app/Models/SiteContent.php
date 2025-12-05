@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SiteContent extends Model
 {
     use HasFactory;
+    protected $table = 'site_content';
 
     protected $fillable = [
         'key',

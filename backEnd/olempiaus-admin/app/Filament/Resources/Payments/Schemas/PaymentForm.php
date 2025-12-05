@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Filament\Resources\Payments\Schemas;
+
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
+
+class PaymentForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                TextInput::make('booking_id')
+                    ->required()
+                    ->numeric(),
+                TextInput::make('amount')
+                    ->required()
+                    ->numeric(),
+                Select::make('payment_method')
+                    ->options(['mpesa' => 'Mpesa', 'card' => 'Card', 'cash' => 'Cash', 'paypal' => 'Paypal'])
+                    ->default('cash'),
+                TextInput::make('transaction_code'),
+                Select::make('status')
+                    ->options(['pending' => 'Pending', 'paid' => 'Paid', 'failed' => 'Failed', 'refunded' => 'Refunded'])
+                    ->default('pending'),
+            ]);
+    }
+}
